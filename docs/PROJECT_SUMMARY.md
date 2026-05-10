@@ -7,6 +7,8 @@ Une entreprise disposait d'un catalogue produit issu de Dolibarr, mais les donne
 ## Mission
 
 Construire un pipeline de traitement capable de transformer les exports CRM en fichiers importables dans WordPress / WooCommerce, avec enrichissement automatique des fiches produits.
+<img width="1032" height="696" alt="image" src="https://github.com/user-attachments/assets/fe540d44-b71b-46cb-a729-fdc7ff842795" />
+
 
 ## Travail realise
 
