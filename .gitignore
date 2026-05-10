@@ -1,0 +1,20 @@
+.venv/
+__pycache__/
+.pytest_cache/
+*.pyc
+.env
+exports/
+*.log
+historique/cache/
+historique/assets/
+historique/donnees/
+historique/exports/
+
+# Local raw exports can contain business data.
+data/raw/
+data/private/
+*.csv
+*.xlsx
+*.xls
+!data/examples/
+!data/examples/**

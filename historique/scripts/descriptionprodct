@@ -1,0 +1,54 @@
+import os
+
+import pandas as pd
+from openai import OpenAI
+
+
+api_key = os.getenv("OPENAI_API_KEY")
+if not api_key:
+    raise RuntimeError("OPENAI_API_KEY manquante. Ajoutez-la dans vos variables d'environnement.")
+
+client = OpenAI(api_key=api_key)
+
+fichier = "produits_surveillance_alarme.xlsx"
+df = pd.read_excel(fichier)
+
+if "description_longue_seo" not in df.columns:
+    df["description_longue_seo"] = ""
+if "description_courte" not in df.columns:
+    df["description_courte"] = ""
+
+for i in range(min(10, len(df))):
+    nom = df.loc[i, "name"]
+    print(f"Generation pour : {nom}")
+
+    response_long = client.chat.completions.create(
+        model=os.getenv("OPENAI_MODEL", "gpt-4o-mini"),
+        messages=[
+            {
+                "role": "user",
+                "content": (
+                    "Redige une description longue optimisee SEO en francais pour le produit "
+                    f"suivant : {nom}. Utilise un style vendeur, professionnel et naturel."
+                ),
+            }
+        ],
+        max_tokens=300,
+    )
+
+    response_short = client.chat.completions.create(
+        model=os.getenv("OPENAI_MODEL", "gpt-4o-mini"),
+        messages=[
+            {
+                "role": "user",
+                "content": f"Redige une description courte et attractive en francais pour : {nom}.",
+            }
+        ],
+        max_tokens=80,
+    )
+
+    df.loc[i, "description_longue_seo"] = response_long.choices[0].message.content.strip()
+    df.loc[i, "description_courte"] = response_short.choices[0].message.content.strip()
+
+df.to_excel(fichier, index=False)
+print("Descriptions generees et ajoutees pour les 10 premiers produits.")
