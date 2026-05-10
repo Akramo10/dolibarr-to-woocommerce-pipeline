@@ -1,9 +1,10 @@
+
 # CRM to WooCommerce Product Pipeline
 
 Projet de traitement de donnees produits realise pour automatiser la migration d'un catalogue depuis le CRM Dolibarr vers une boutique WordPress / WooCommerce.
 
 Le pipeline nettoie les exports produits, separe les cas a corriger, enrichit les fiches avec des images et des descriptions SEO, puis genere un fichier pret pour l'import en masse dans WooCommerce.
-
+<img width="1046" height="701" alt="image" src="https://github.com/user-attachments/assets/36e35f9b-c246-4480-a2c0-f7aed8ee8e85" />
 ## Objectif
 
 Transformer un export brut Dolibarr en catalogue e-commerce exploitable :
